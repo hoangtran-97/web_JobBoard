@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Jobs from "./Jobs";
 import "./App.css";
 
@@ -22,8 +22,8 @@ async function fetchJobs(updateCallBack) {
     console.log({ json });
 }
 function App() {
-    const [jobList, updateJobs] = React.useState([]);
-    React.useEffect(() => {
+    const [jobList, updateJobs] = useState([]);
+    useEffect(() => {
         fetchJobs(updateJobs);
     }, []);
     return (

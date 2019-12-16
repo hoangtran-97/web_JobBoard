@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import Job from "./Job";
+import JobModal from "./JobModal";
 
 const Jobs = ({ jobs }) => {
     const numJobs = jobs.length;
@@ -17,27 +18,40 @@ const Jobs = ({ jobs }) => {
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
+    // Modal
+    const [open, setOpen] = useState(false);
+    const [selectedJob, setSelectedJob] = useState({});
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
     return (
         <div className="jobs">
+            <JobModal open={open} job={selectedJob} handleClose={handleClose} />
             <Typography variant="h4" component="h1">
-                Entry Level Software Jobs
+                Entry Level Software Jobs From Github
             </Typography>
             <Typography variant="h6" component="h1">
                 Found {numJobs} jobs
             </Typography>
             {
                 jobsOnPage.map(
-                    (job) => <Job job={job} />
+                    (job) => (
+                        <Job
+                            job={job}
+                            onClick={() => {
+                                setSelectedJob(job);
+                                handleClickOpen();
+                            }}
+                        />
+                    )
                 )
             }
             <div>
-                Page
-                {" "}
-                {activeStep + 1}
-                {" "}
-                of
-                {" "}
-                {numPages}
+                Page {activeStep + 1} of {numPages}
             </div>
             <MobileStepper
                 variant="progress"
@@ -58,7 +72,7 @@ const Jobs = ({ jobs }) => {
                 )}
             />
 
-        </div>
+        </div >
     );
 };
 export default Jobs;

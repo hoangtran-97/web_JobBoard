@@ -1,9 +1,9 @@
 import React from "react";
 import { Typography, Paper } from "@material-ui/core";
 
-const Job = ({ job }) => (
-    <Paper className="job">
-        <div>
+const Job = ({ job, onClick }) => (
+    <Paper className="job" onClick={onClick}>
+        <div className="job-column">
             <Typography variant="h6">{job.title}</Typography>
             <Typography variant="h5">{job.company}</Typography>
             <Typography>{job.location}</Typography>
@@ -13,4 +13,5 @@ const Job = ({ job }) => (
         </div>
     </Paper>
 );
+
 export default Job;

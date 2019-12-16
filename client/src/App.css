@@ -23,7 +23,7 @@ body {
 }
 
 .job {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -31,11 +31,20 @@ body {
   padding: 20px 10px;
   align-items: center;
 }
+.job-column{
+  display:  flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+}
 .job:hover{
   cursor: "pointer";
   color: #666666;
 }
-
+.detail-logo{
+  height: 30px; 
+  float: right
+}
 
 
 
